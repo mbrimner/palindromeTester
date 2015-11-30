@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include ../partials/head %>
+
+<body>
+    <div class="container">
+
+        <%- include ../partials/header %>
+
+        <div class="jumbotron">
+            <h2>Test a Potential Palindrome</h2>
+            <form id="theForm" method="post" action="/palindromes">
+                <input id="stringToTest" name="stringToTest" type="text" class="form-control" placeholder="e.g. 'nurses run'" required pattern="[a-zA-Z0-9]+[a-zA-Z0-9 ]+">
+                <label id="error"></label><br>
+                <button id='createString' class="btn btn-primary btn-lg">Go!</button>
+            </form>
+        </div>
+
+        <h2>Existing Strings:</h2>
+        <% palindromes.forEach(function(palindrome) { %>
+            <p>
+                <%= palindrome.stringToTest %>
+                <button type="button" class="btn btn-sm btn-info details" data-id="<%=palindrome._id%>" data-str="<%=palindrome.stringToTest%>" data-bool="<%=palindrome.isPalindrome%>" data-toggle="modal" data-target="#detailsModal">Details</button>
+                <button type="button" class="btn btn-sm btn-danger delete" data-id="<%=palindrome._id%>">Delete</button>
+            </p>
+        <% }) %>
+
+    </div> <!-- /container -->
+
+    <!-- Modal -->
+    <div id="detailsModal" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Details</h4>
+                </div>
+                <div class="modal-body">
+                    <label id="idLabel" name="idLabel">id: </label><br>
+                    <label id="stringLabel" name="stringLabel">string: </label><br>
+                    <label id="palindromeLabel" name="palindromeLabel">palindrome: </label><br>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <script>
+        $(function() {
+            $("input:text:visible:first").focus();
+
+            $("#createString").on('click', function(e) {
+                if ($("#stringToTest").val().trim().length > 0) {
+                    $.post("/palindromes", $('#theForm').serialize())
+                        .done(function()  {
+                            location.reload();
+                        })
+                        .error(function() {
+                            $('#error').text('string already exists');
+                        })
+                }
+            });
+
+            $(".details").on('click', function() {
+                $('.modal-body #idLabel').text('id: ' + $(this).data('id') );
+                $('.modal-body #stringLabel').text('string: ' + $(this).data('str') );
+                $('.modal-body #palindromeLabel').text('palindrome: ' + $(this).data('bool') );
+            });
+
+            $(".delete").on('click', function() {
+                var parent = $(this).parent().parent();
+                $.ajax({
+                    url: "/palindromes/" + $(this).data("id"),
+                    method: "delete"
+                }).done(function()  {
+                    parent.remove();
+                    location.reload();
+                });
+            });
+        })
+    </script>
+</body>
+</html>
