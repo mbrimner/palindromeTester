@@ -46,16 +46,18 @@ HTTP Method: POST<br/>
 Path: /palindromes<br/>
 
 Example Request<br/>
-curl http://ec2-52-34-87-249.us-west-2.compute.amazonaws.com/palindromes \<br/>
--d '{"stringToTest": "nurses run"}' \<br/>
--X POST<br/>
+curl http://ec2-52-34-87-249.us-west-2.compute.amazonaws.com/palindromes \
+-d '{"stringToTest": "nurses run"}' \
+-X POST -H "content-type: application/json"
+<br/>
 
 Example Response<br/>
 201 Created<br/>
 {<br/>
-    "_id": "187273718",<br/>
-    "stringToTest": "nurses run",<br/>
-    "isPalindrome": true<br/>
+    "__v":0,<br/>
+    "stringToTest":"nurses run",<br/>
+    "isPalindrome":false,<br/>
+    "_id":"565cf19f9cdcff1751346a59"<br/>
 }<br/>
 
 Other Responses:<br/>
@@ -68,12 +70,14 @@ HTTP Method: GET<br/>
 Path: /palindromes<br/>
 
 Example Request<br/>
-curl http://ec2-52-34-87-249.us-west-2.compute.amazonaws.com/palindromes<br/> 
+curl http://ec2-52-34-87-249.us-west-2.compute.amazonaws.com/palindromes
+<br/> 
 
 Example Response<br/>
 200 OK<br/>
 [{<br/>
-    "_id": "187273718",<br/>
+    "__v":0,<br/>
+    "_id": "565cf19f9cdcff1751346a59",<br/>
     "stringToTest": "nurses run",<br/>
     "isPalindrome": true<br/>
 }]<br/>
@@ -87,12 +91,13 @@ HTTP Method: GET<br/>
 Path: /palindromes/{id}<br/>
 
 Example Request<br/>
-curl http://ec2-52-34-87-249.us-west-2.compute.amazonaws.com/palindromes/187273718<br/>
+curl http://ec2-52-34-87-249.us-west-2.compute.amazonaws.com/palindromes/565cf19f9cdcff1751346a59
 
 Example Response<br/>
 200 Created<br/>
 {<br/>
-    "_id": "187273718",<br/>
+    "__v":0,<br/>
+    "_id": "565cf19f9cdcff1751346a59",<br/>
     "stringToTest": "nurses run",<br/>
     "isPalindrome": true<br/>
 }<br/>
@@ -107,8 +112,9 @@ HTTP Method: DELETE<br/>
 Path: /palindromes/{id}<br/>
 
 Example Request<br/>
-curl http://ec2-52-34-87-249.us-west-2.compute.amazonaws.com/palindromes/187273718 \<br/>
--X DELETE<br/>
+curl http://ec2-52-34-87-249.us-west-2.compute.amazonaws.com/palindromes/565cf19f9cdcff1751346a59 \
+-X DELETE
+<br/>
 
 Example Response<br/>
 204 No Content<br/>
