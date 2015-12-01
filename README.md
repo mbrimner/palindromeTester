@@ -49,8 +49,8 @@ HTTP Method: POST<br/>
 Path: /palindromes<br/>
 
 Example Request<br/>
-curl http://ec2-52-34-87-249.us-west-2.compute.amazonaws.com/palindromes \
--d '{"stringToTest": "nurses run"}' \
+curl http://ec2-52-34-87-249.us-west-2.compute.amazonaws.com/palindromes 
+-d '{"stringToTest": "nurses run"}' 
 -X POST -H "content-type: application/json"
 <br/>
 
@@ -97,7 +97,7 @@ Example Request<br/>
 curl http://ec2-52-34-87-249.us-west-2.compute.amazonaws.com/palindromes/565cf19f9cdcff1751346a59
 
 Example Response<br/>
-200 Created<br/>
+200 OK<br/>
 {<br/>
     "__v":0,<br/>
     "_id": "565cf19f9cdcff1751346a59",<br/>
@@ -115,7 +115,7 @@ HTTP Method: DELETE<br/>
 Path: /palindromes/{id}<br/>
 
 Example Request<br/>
-curl http://ec2-52-34-87-249.us-west-2.compute.amazonaws.com/palindromes/565cf19f9cdcff1751346a59 \
+curl http://ec2-52-34-87-249.us-west-2.compute.amazonaws.com/palindromes/565cf19f9cdcff1751346a59 
 -X DELETE
 <br/>
 
