@@ -36,7 +36,10 @@ AWS hosted instance:<br/>
 
 
 Run Tests:<br/>
-- From the palindromeTester directory: mocha test/test.js
+- From the palindromeTester directory: 
+-- export NODE_ENV=development
+-- npm install
+-- mocha test/test.js
 
 
 REST API documentation:<br/>
