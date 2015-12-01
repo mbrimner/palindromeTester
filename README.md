@@ -59,7 +59,7 @@ Example Response<br/>
 {<br/>
     "__v":0,<br/>
     "stringToTest":"nurses run",<br/>
-    "isPalindrome":false,<br/>
+    "isPalindrome":true,<br/>
     "_id":"565cf19f9cdcff1751346a59"<br/>
 }<br/>
 
